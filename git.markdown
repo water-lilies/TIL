@@ -12,11 +12,11 @@
 
 ## 준비하기
 
-윈도우에서 git을 활용하기 위해서 [gitforwindows](https://gitforwindows.org/) 을 설치한다.
+윈도우에서 git을 활용하기 위해서 [git bash](https://gitforwindows.org/) 을 설치한다.
 
-git을 화룡하기 위해서 GUI 툴인 `source tree`, `github desktop` 등을 활용할 수도 있다. 
+git을 활용하기 위해서 GUI 툴인 `source tree`, `github desktop` 등을 활용할 수도 있다. 
 
-초기 설치를 완료한 이후에 컴퓨터에 `author` 정보를 입력한다.
+초기 설치를 완료한 이후에 컴퓨터에 `author` 정보를 입력한다. 이메일 정보를 github에 가입된 이메일로 일치시켜야 커밋 이력들이 관리된다.
 
 ```bash
 $ git config --global user.name minji
@@ -35,9 +35,9 @@ Initialized empty Git repository in C:/Users/student/Desktop/til/.git/
 ```
 
 * `.git` 폴더가 생성되며, 여기에 git과 관련된 모든 정보가 저장된다.
-* git bash에 (`master`)라고 표현되는데, 이는 `master` 브랜치에 있다는 뜻이다.
+* git bash에 `(master)`라고 표현되는데, 이는 `master` 브랜치에 있다는 뜻이다.
 
-### 2. add
+### 2. `add`
 
 `working directory` 즉, 작업공간에서 변경된 사항을 이력으로 저장하기 위해서는 반드시 `staging area` 를 거쳐야한다.
 
@@ -47,7 +47,7 @@ $ git add images # 특정폴더
 $ git add. # 현재 디렉토리
 ```
 
-* add 전 상태
+* `add` 전 상태
 
   ```bash
   $ git status
@@ -68,29 +68,60 @@ $ git add. # 현재 디렉토리
   nothing added to commit but untracked files present (use "git add" to track)
   ```
 
-* add 후 상태 
+* `add` 후 상태 
+
+```bash
+$ git add images/
+$ git status
+On branch master
+
+No commits yet
+# 커밋될 변화들
+# => staging area에 있는 파일들
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   images/anaconda.jpg
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        git.md
+        markdown.md
+```
 
 
 
-
-
-### 3. commit
+### 3. `commit`
 
 commit은 이력을 확정짓는 명령어로, 해당 시점의 스냅샷을 기록한다.
 
-커밋시에는 반드시 메세지를작성해야하며, 메세지는 변경사항을 알 수 있도록 명확하게 작성한다.
+커밋시에는 반드시 메세지를 작성 해야하며, 메세지는 변경사항을 알 수 있도록 명확하게 작성한다.
 
 ```bash
 $ git commit -m '마크다운 및 git 정리'
+[master (root-commit) 6c10b4d] 마크다운 및 git 정리
+ 3 files changed, 185 insertions(+)
+ create mode 100644 git.md
+ create mode 100644 images/anaconda.jpg
+ create mode 100644 markdown.md
 ```
 
 커밋 이후에는 아래의 명령어를 통해 지금까지 작성된 이력을 확인하자.
 
 ```bash
 $ git log
+commit 6c10b4d2be6a10024ed0a586bfde3b7b16ad0a4f (HEAD -> master)
+Author: edutak <edutak.ssafy@gmail.com>
+Date:   Thu Dec 26 14:34:51 2019 +0900
+
+    마크다운 및 git 정리
+    
 $ git log --oneline
+6c10b4d (HEAD -> master) 마크다운 및 git 정리
+
 $ git log -1
 ```
+
+커밋은 해시코드를 바탕으로 구분된다.
 
 
 
@@ -120,7 +151,7 @@ $ git remote add origin 깃허브url
 
 
 
-## 2. push - 원격저장소 업로드
+## 2. `push` - 원격저장소 업로드
 
 ```bash
 $ git push origin master
@@ -133,6 +164,30 @@ $ git push origin master
 그리고, 항상 모든 명령어 이후에 연관된 상태를 확인하자.
 
 `status`, `log`, `remote -v`
+
+
+
+## 3. `pull`
+
+```bash
+$ git pull origin master
+```
+
+원격저장소의 변경 사항을 받아온다.
+
+
+
+## 4. `clone`
+
+```bash
+$ git clone 깃헙url
+```
+
+원격저장소를 복제한다.
+
+**주의! `init` 명령어와 같이 기억하자!**
+
+
 
 
 
