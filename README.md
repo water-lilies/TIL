@@ -4,7 +4,7 @@
 
 ## 1. git
 
-* [git 기초](./git.markdown.md)
+* [git 기초](./git.md)
 * [마크다운 활용](./markdown.md)
 
 ## 2. Python
