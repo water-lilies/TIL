@@ -95,9 +95,9 @@ def foo(a):
 
 파일>환경설정>이미지>경로지정
 
- `![두산](images/두산.jpg)` 
+ `![두산](./images/두산.jpg)` 
 
-![두산](images/두산].jpg)
+![두산](./images/두산].jpg)
 
 
 
