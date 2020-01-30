@@ -1,0 +1,36 @@
+# 100MB 넘는 파일을 commit 했을때 해결방법
+
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+remote: error: Trace: ba83aacbc9298cea45e8cc520015c9fa
+remote: error: See http://git.io/iEPt8g for more information.
+remote: error: File day10/all_freezed.h5 is 350.23 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: File day12/yolov3.weights is 236.52 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: File day13/snowman/darknet53.conv.74 is 154.96 MB; this exceeds GitHub's file size limit of 100.00 MB
+To https://github.com/water-lilies/DNN.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/water-lilies/DNN.git'
+
+
+
+
+1. 해당 파일의 캐시를 삭제한다.
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch 파일명.확장자'
+
+
+2. lfs를 설치한다.
+$ git lfs install
+
+
+3. lfs을 용량이 큰 파일에 적용한다.
+$ git lfs track "파일명.확장자"
+
+단, 관리할 리소스를 "*.zip"의 형태로 track명령어에 등록한 경우, 
+앞으로 zip확장자는 다음 커밋부터 자동으로 LFS에서 관리한다.
+
+
+4. 평소와 동일하게 git push를 한다.
+$ git add .
+$ git commit -m "마크다운"
+$ git push origin master
+
+끝!
